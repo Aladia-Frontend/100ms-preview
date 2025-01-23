@@ -41,10 +41,7 @@ export default {
       }
       this.loading = true;
 
-      const hostname = window.location.hostname;
-      const baseUrl = `https://prod-in2.100ms.live/hmsapi/${
-        hostname === "localhost" ? "aladia-io.app.100ms.live" : hostname
-      }/api/token`;
+      const baseUrl = `https://prod-in2.100ms.live/hmsapi/aladia-io.app.100ms.live/api/token`;
       const { data } = await axios.post(baseUrl, {
         role: "__internal_recorder",
         room_id: this.roomId,
