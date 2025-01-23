@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     async init() {
-      
       if (!this.hmsStore.hmsIsConnectedToRoom) {
         this.$store.dispatch("initialiseSubscribe");
       }
@@ -42,8 +41,10 @@ export default {
       }
       this.loading = true;
 
-      const baseUrl =
-        "https://prod-in2.100ms.live/hmsapi/daniel-videoconf-2020.app.100ms.live/api/token";
+      const hostname = window.location.hostname;
+      const baseUrl = `https://prod-in2.100ms.live/hmsapi/${
+        hostname === "localhost" ? "aladia-io.app.100ms.live" : hostname
+      }/api/token`;
       const { data } = await axios.post(baseUrl, {
         role: "__internal_recorder",
         room_id: this.roomId,
